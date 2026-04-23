@@ -27,6 +27,7 @@ export  const AuthContext=createContext()
                 }
 
                 case'LOGOUT':
+                localStorage.clear();
                 return{
                     user:null,
                    role:null,
@@ -47,9 +48,11 @@ export  const AuthContext=createContext()
 
         useEffect(()=>
         {
-            localStorage.setItem("user",JSON.stringify(state.user))
-            localStorage.setItem("token", state.token);
-            localStorage.setItem("role", state.role);
+            if (state.user) {
+        localStorage.setItem("user", JSON.stringify(state.user));
+        localStorage.setItem("token", state.token || "");
+        localStorage.setItem("role", state.role || "");
+    }
 
         },[state])
 
