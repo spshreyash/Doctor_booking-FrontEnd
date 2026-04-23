@@ -23,7 +23,9 @@ export const AppcontextProvider=({children})=>
     const value={
         doctors:data || [],
         query,
-        setquery
+        setquery,
+        loading,
+  error
     }
 
    return(
