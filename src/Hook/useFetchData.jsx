@@ -17,6 +17,7 @@ export const useFetchData = (url) => {
       const res = await fetch(url, {
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         credentials: 'include',
       });
