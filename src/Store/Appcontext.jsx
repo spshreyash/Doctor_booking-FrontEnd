@@ -9,10 +9,11 @@ export const Appcontext=createContext()
 export const AppcontextProvider=({children})=>
 {
     const[query,setquery]=useState('')
+    console.log(query,"this is query ok ok okok")
   const{data,loading,error}=useFetchData(`${BASE_URL}/doctor?query=${query}`,)
   console.log(data)
 
-    {loading && <Loading/>}
+    if (loading) return <Loading />;
 
     if (error) {
         return <div className="text-red-500 p-4">Failed to load data: {error.message}</div>;

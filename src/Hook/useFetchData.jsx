@@ -44,8 +44,9 @@ export const useFetchData = (url) => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, [url]);
+  if (!token) return;
+  fetchData();
+}, [url, token]);
 
   return { data, loading, error };
 };
