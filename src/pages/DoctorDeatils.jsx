@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 
 
 import { DoctorAbout } from './DoctorAbout'
-import { Feedback } from './feedback'
+import { Feedback } from './Feedback'
 import { SidePannel } from '../components/SidePannel'
 
 export const DoctorDeatils = () => {
