@@ -53,7 +53,7 @@ export const MyBooking = () => {
           ) : (
             bookings.map((booking, index) => {
               // Accessing doctor information from the  doctors array
-              const doctor = doctors[0]; // Assuming there is one doctor in the array
+              const doctor = doctors[index]; // Assuming there is one doctor in the array
               return (
                 <div
                   key={index}
