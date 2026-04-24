@@ -20,7 +20,7 @@ export const useFetchData = (url) => {
           'Content-Type': 'application/json',
           
         },
-        // credentials: 'include',
+        credentials: 'include',
       });
 
       const result = await res.json();
@@ -51,39 +51,3 @@ export const useFetchData = (url) => {
   return { data, loading, error };
 };
 
-
-// export const useFetchData = (url) => {
-//   const [data, setdata] = useState([]);
-//   const [loading, setLoading] = useState(false);
-//   const [error, setError] = useState(null);
-
-//   const fetchData = async () => {
-//     setLoading(true);
-
-//     try {
-//       const res = await fetch(url);
-
-//       const text = await res.text();
-//       console.log("RAW RESPONSE:", text);
-
-//       if (!res.ok) {
-//         throw new Error("Server error");
-//       }
-
-//       const result = JSON.parse(text);
-
-//       setdata(result.doctor || []);
-//     } catch (err) {
-//       console.error(err);
-//       setError(err.message);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   useEffect(() => {
-//     fetchData();
-//   }, [url]);
-
-//   return { data, loading, error };
-// };
