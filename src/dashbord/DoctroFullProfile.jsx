@@ -80,7 +80,8 @@ export const DoctroFullProfile = ({doctordata, dataid}) => {
           method:"put",
           credentials:"include",
           headers:{
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            headers:{ Authorization:`Bearer ${token}` },
           },
           body:JSON.stringify(formData)
          

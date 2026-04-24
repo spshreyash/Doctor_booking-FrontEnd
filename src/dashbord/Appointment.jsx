@@ -9,7 +9,7 @@ import { BASE_URL } from '../utils/config';
 import { AuthContext } from '../Store/AuthContext';
 
 export const Appointment = ({appointment,dataid}) => {
-  const { user } = useContext(AuthContext);
+  const { user,token } = useContext(AuthContext);
    console.log(appointment,"t his is is the user data ")
    console.log(dataid,"t his is is the user data ")
 
@@ -24,6 +24,7 @@ export const Appointment = ({appointment,dataid}) => {
           credentials: 'include', // send cookies (important for auth)
           headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
           },
         });
 

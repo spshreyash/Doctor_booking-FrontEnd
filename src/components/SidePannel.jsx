@@ -1,12 +1,15 @@
 import React from 'react'
 import { BASE_URL } from '../utils/config'
 import { toast } from 'react-toastify'
+import { AuthContext } from '../Store/AuthContext'
+import { useContext } from 'react'
 
 export const SidePannel = ({doctorID,timeslots,ticketPrice}) => {
 
     // this is id of docotr 
     const id=doctorID
     // console.log(doctorID," thisis form sidepannel")
+    const { token } = useContext(AuthContext);
 
     const bookinghandleer = async () => {
       try {
@@ -14,7 +17,8 @@ export const SidePannel = ({doctorID,timeslots,ticketPrice}) => {
           method: 'POST',
           credentials: 'include',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization':`Bearer ${token}` 
           }
         });
     

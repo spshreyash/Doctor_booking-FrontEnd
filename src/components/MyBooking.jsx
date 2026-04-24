@@ -6,8 +6,11 @@ import React, { useEffect, useState } from 'react';
 import { BASE_URL } from '../utils/config';
 import { Loading } from '../pages/Loading';
 import { formatDate } from '../utils/formatdate';
+import { AuthContext } from '../Store/AuthContext';
+import { useContext } from 'react';
 
 export const MyBooking = () => {
+  const { token } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,6 +20,7 @@ export const MyBooking = () => {
       try {
         const res = await fetch(`${BASE_URL}/user/appointments/my-appointments`, {
           credentials: 'include',
+          headers:{ Authorization:`Bearer ${token}` },
         });
 
         const result = await res.json();
@@ -48,7 +52,7 @@ export const MyBooking = () => {
             <p className="text-blue-400 mt-4">No Appointment Found</p>
           ) : (
             bookings.map((booking, index) => {
-              // Accessing doctor information from the `doctors` array
+              // Accessing doctor information from the  doctors array
               const doctor = doctors[0]; // Assuming there is one doctor in the array
               return (
                 <div

@@ -5,8 +5,11 @@ import React, { useEffect, useState } from 'react';
 import { uploadImageToCloudnery } from '../utils/uplodfile';
 import { toast } from 'react-toastify';
 import { BASE_URL } from '../utils/config';
+import { AuthContext } from '../Store/AuthContext';
+import { useContext } from 'react';
 
 export const ProfileSetting = ({data}) => {
+  const { token } = useContext(AuthContext);
     const [name, setFullName] = useState('');
     const [email, setEmail] = useState('');
 
@@ -56,7 +59,8 @@ export const ProfileSetting = ({data}) => {
            method:"put",
            credentials:"include",
            headers:{
-             'Content-Type':'application/json'
+             'Content-Type':'application/json',
+             Authorization:`Bearer ${token}`
            },
            body:JSON.stringify(userData)
          })
