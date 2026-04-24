@@ -15,11 +15,12 @@ export const useFetchData = (url) => {
     setLoading(true);
     try {
       const res = await fetch(url, {
+        method: "GET",
         headers: {
           'Content-Type': 'application/json',
           
         },
-        credentials: 'include',
+        // credentials: 'include',
       });
 
       const result = await res.json();
@@ -43,10 +44,9 @@ export const useFetchData = (url) => {
     }
   };
 
-  useEffect(() => {
-  if (!token) return;
+ useEffect(() => {
   fetchData();
-}, [url, token]);
+}, [url]);
 
   return { data, loading, error };
 };
