@@ -14,7 +14,7 @@ import { AuthContext } from '../Store/AuthContext';
 
 export const Feedbackform = ({setfeed,showfeed}) => {
   const [rating, setRating] = useState(0);
-  const { token } = useContext(AuthContext);
+  const {  token } = useContext(AuthContext);
 
   const[reviews,setReviws]=useState(null)
    const[loading,setloading]=useState(false)
