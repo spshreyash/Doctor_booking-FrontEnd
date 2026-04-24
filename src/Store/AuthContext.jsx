@@ -14,12 +14,14 @@ export  const AuthContext=createContext()
         switch (action.type) {
             case 'LOGIN_START':
                 return{
-                    user:null,
-                   role:null,
-                    token:null ,
-                }       ;
+                     ...state,
+                   loading: true
+                }       
 
                 case'LOGIN_SUCCESS':
+                  localStorage.setItem("user", JSON.stringify(action.payload.user));
+    localStorage.setItem("token", action.payload.token);
+    localStorage.setItem("role", action.payload.role);
                 return{
                     user:action.payload.user,
                     role:action.payload.role,
@@ -27,7 +29,10 @@ export  const AuthContext=createContext()
                 }
 
                 case'LOGOUT':
-                localStorage.clear();
+                localStorage.removeItem("user");
+               localStorage.removeItem("token");
+                localStorage.removeItem("role");
+
                 return{
                     user:null,
                    role:null,
