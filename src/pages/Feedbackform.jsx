@@ -9,9 +9,12 @@ import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 
 import { Loading } from './Loading';
+import { AuthContext } from '../Store/AuthContext';
+
 
 export const Feedbackform = ({setfeed,showfeed}) => {
   const [rating, setRating] = useState(0);
+  const { token } = useContext(AuthContext);
 
   const[reviews,setReviws]=useState(null)
    const[loading,setloading]=useState(false)
@@ -33,9 +36,11 @@ export const Feedbackform = ({setfeed,showfeed}) => {
        const res=await fetch(`${BASE_URL}/doctor/${id}/reviewe`,{
         method:"POST",
         headers:{
-          "Content-Type":"application/json"
+          "Content-Type":"application/json",
+           Authorization:`Bearer ${token}`
         },
         credentials:"include",
+        
         body: JSON.stringify({
           rating,
           reviewText: reviews,  
