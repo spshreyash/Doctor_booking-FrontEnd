@@ -5,7 +5,8 @@ export  const AuthContext=createContext()
         user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null,
 
         role:localStorage.getItem("role") || null,
-        token:localStorage.getItem("token") || null
+        token:localStorage.getItem("token") || null,
+        loading:false
     }
 
 
@@ -14,18 +15,19 @@ export  const AuthContext=createContext()
         switch (action.type) {
             case 'LOGIN_START':
                 return{
-                     ...state,
-                   loading: true
+                   ...state,
+                    loading: true
                 }       
 
                 case'LOGIN_SUCCESS':
-                  localStorage.setItem("user", JSON.stringify(action.payload.user));
-    localStorage.setItem("token", action.payload.token);
-    localStorage.setItem("role", action.payload.role);
+                 localStorage.setItem("user", JSON.stringify(action.payload.user));
+                  localStorage.setItem("token", action.payload.token);
+                  localStorage.setItem("role", action.payload.role);
                 return{
                     user:action.payload.user,
                     role:action.payload.role,
                      token:action.payload.token ,  
+                      loading:false
                 }
 
                 case'LOGOUT':
@@ -37,6 +39,7 @@ export  const AuthContext=createContext()
                     user:null,
                    role:null,
                     token:null ,
+                    loading: false
                 }
                 
                 
@@ -63,6 +66,6 @@ export  const AuthContext=createContext()
 
 
         return(
-            <AuthContext.Provider value={{user:state.user , token:state.token , role:state.role, dispatch}}>{children} </AuthContext.Provider>
+            <AuthContext.Provider value={{user:state.user , token:state.token , role:state.role,  loading:state.loading,dispatch}}>{children} </AuthContext.Provider>
         )
     }

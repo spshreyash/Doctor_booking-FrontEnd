@@ -18,6 +18,8 @@ export const useFetchData = (url) => {
         method: "GET",
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+
           
         },
         credentials: 'include',
@@ -45,8 +47,10 @@ export const useFetchData = (url) => {
   };
 
  useEffect(() => {
-  fetchData();
-}, [url]);
+  if (token) {
+    fetchData();
+  }
+}, [url, token]);
 
   return { data, loading, error };
 };
