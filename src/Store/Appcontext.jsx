@@ -10,11 +10,12 @@ export const AppcontextProvider=({children})=>
 {
     const[query,setquery]=useState('')
     console.log(query,"this is query ok ok okok")
-  const{data,loading,error}=useFetchData(`${BASE_URL}/api/doctor?query=${query}`)
+  const{data,loading,error}=useFetchData(`${BASE_URL}/doctor?query=${query}`)
   console.log(data,"t hsi is main dat ok ")
   console.log(`${BASE_URL}/doctor`,"this is url ")
   console.log( error,"this is errro ")
   console.log(loading,"this is loding")
+
     if (loading) return <Loading />;
 
     if (error) {
