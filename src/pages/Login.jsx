@@ -15,6 +15,21 @@ export const Login = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+     if (email.trim() === "") {
+      toast.error("Email is required");
+      return;
+    }
+
+    if (!email.includes("@") || !email.includes(".")) {
+      toast.error("Enter valid email");
+      return;
+    }
+
+    if (password.trim() === "") {
+      toast.error("Password is required");
+      return;
+    }
+
     const userData = {
       email,
       password,
@@ -34,7 +49,7 @@ export const Login = () => {
       const data = await res.json();
 
       if (res.ok) {
-        // console.log("login info succes data ",data,"login info")
+        console.log("login info succes data ",data,"login info")
         dispatch({
           type: "LOGIN_SUCCESS",
           payload: {
