@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 export const Tabs = ({tab,setTab}) => {
 
     const navigate=useNavigate()
-    const{user,dispatch}=useContext(AuthContext)
+    const{user,dispatch,token}=useContext(AuthContext)
 
       // console.log(user," this use form the importhant ")
     
@@ -16,6 +16,9 @@ export const Tabs = ({tab,setTab}) => {
             // Make a direct API call (not using hook)
             const res = await fetch(`${BASE_URL}/doctor/logout`, {
               method: 'POST',
+              headers:{
+                 Authorization:`Bearer ${token}`
+              },
               credentials: 'include', 
             });
               // console.log(res,"form logout ")
@@ -44,6 +47,9 @@ export const Tabs = ({tab,setTab}) => {
             const res=await fetch(`${BASE_URL}/doctor/${user._id}`,{
               method:"delete",
               credentials:"include",
+              headers:{
+                 Authorization:`Bearer ${token}`
+              },
             })
 
              if(!res.ok)
