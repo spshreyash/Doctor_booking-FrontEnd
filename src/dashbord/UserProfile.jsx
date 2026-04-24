@@ -10,7 +10,8 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify'
 export const UserProfile = () => {
 
-   const{dispatch}=useContext(AuthContext)
+   const{dispatch,token}=useContext(AuthContext)
+    
    const[tab,setTab]=useState("ProfileSetting")
    
    const navigate=useNavigate()
@@ -24,6 +25,8 @@ export const UserProfile = () => {
         const res = await fetch(`${BASE_URL}/user/logout`, {
           method: 'POST',
           credentials: 'include', 
+          headers:{ Authorization:`Bearer ${token}` },
+
         });
           // console.log(res,"form logout ")
         if (!res.ok) {
